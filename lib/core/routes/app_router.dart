@@ -1,10 +1,14 @@
 import 'package:go_router/go_router.dart';
 
+import '../../features/korean/presentation/pages/korean_layout.dart';
+
 GoRouter appRouter  = GoRouter(
-    initialLocation: '/',
+    initialLocation: '/koreanLayout',
     routes: [
-      GoRoute(
-        path: '/test',
-        // builder: (context, state) => const test(),
+      // ======================================
+      // ========= KOREAN PAGES ===============
+      GoRoute(path: '/koreanLayout',
+      builder: (context, state) => const KoreanLayout(),
       ),
+      // ======================================
     ]);
