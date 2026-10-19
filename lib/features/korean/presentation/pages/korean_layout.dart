@@ -15,7 +15,7 @@ class KoreanLayout extends StatefulWidget {
 class _KoreanLayoutState extends State<KoreanLayout> {
   int index = 0;
 
-  final List<Widget> pages = const [
+  final List<Widget> pages = [
     SkincareScreen(),
     MackupScreen(),
   ];
@@ -53,9 +53,11 @@ class _KoreanLayoutState extends State<KoreanLayout> {
             ],
           ),
 
-          IndexedStack(
-            index: index,
-            children: pages,
+          Expanded(
+            child: IndexedStack(
+              index: index,
+              children: pages,
+            ),
           )
           ],
         ),
