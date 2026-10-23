@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 
 import '../../business_logic/shop_manager.dart';
 import '../../data/models/skincare_product.dart';
-import 'Mackup_screen.dart';
+import 'mackup_screen.dart';
 import 'favorite_screen.dart';
 import 'product_details_screen.dart';
 import 'skincare_screen.dart';
@@ -121,7 +121,7 @@ class _KoreanLayoutState extends State<KoreanLayout> {
           index: index,
           children: [
             SkincareScreen(onProductTap: _openProduct),
-            const MackupScreen(),
+            MackupScreen(onProductTap: _openProduct),
           ],
         );
       case _KoreanView.favorites:
