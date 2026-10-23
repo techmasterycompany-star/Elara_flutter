@@ -6,7 +6,6 @@ import '../../data/skincare_product_repository.dart';
 import '../widgets/category_filter_bar.dart';
 import '../widgets/product_grid.dart';
 
-/// Skincare categories as requested.
 enum SkincareCategory {
   all('All Product'),
   cleansers('Cleansers'),
@@ -22,7 +21,6 @@ enum SkincareCategory {
 class SkincareScreen extends StatefulWidget {
   const SkincareScreen({super.key, required this.onProductTap});
 
-  /// Called when a card is tapped so the layout can open its details.
   final ValueChanged<SkincareProduct> onProductTap;
 
   @override

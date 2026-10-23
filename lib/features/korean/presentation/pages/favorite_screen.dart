@@ -12,7 +12,6 @@ import '../widgets/product_grid.dart';
 class FavoriteScreen extends StatelessWidget {
   const FavoriteScreen({super.key, required this.onProductTap});
 
-  /// Opens the details of a favourited product.
   final ValueChanged<SkincareProduct> onProductTap;
 
   @override
