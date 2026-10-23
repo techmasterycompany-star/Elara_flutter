@@ -16,19 +16,11 @@ class SkincareProduct {
   final String name;
   final String category;
   final double price;
-
-  /// How many units are currently available in stock.
   final int stock;
-
-  /// Empty until the API returns a real url, in which case it is loaded
-  /// from the network and the placeholder asset is used as a fallback.
   final String imageUrl;
-
   final double rating;
   final bool isNew;
   final String productInfo;
-
-  /// Stock at or below this value is shown as "low stock".
   static const int lowStockThreshold = 10;
 
   bool get isInStock => stock > 0;

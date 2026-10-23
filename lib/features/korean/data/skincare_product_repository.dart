@@ -2,10 +2,6 @@ import 'package:elara_flutter/features/korean/business_logic/mock_skincare_produ
 
 import 'models/skincare_product.dart';
 
-/// Serves the skincare catalogue.
-///
-/// Today it returns the mock list from `business_logic`. When the API is ready
-/// only [fetchSkincareProducts] has to change.
 class SkincareProductRepository {
   const SkincareProductRepository();
 
