@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-/// Shows the product image, falling back to the local placeholder asset while
-/// the API does not return a real url yet.
 class ProductImage extends StatelessWidget {
   const ProductImage({super.key, required this.imageUrl, this.fit = BoxFit.cover});
 
@@ -10,11 +8,12 @@ class ProductImage extends StatelessWidget {
 
   static const String placeholderAsset = 'assets/images/logo.png';
 
-  bool get _isNetworkImage => imageUrl.startsWith('http');
+  bool get _isNetworkImage =>
+      imageUrl.startsWith('http://') || imageUrl.startsWith('https://');
 
   @override
   Widget build(BuildContext context) {
-    if (!_isNetworkImage) {
+    if (imageUrl.isEmpty || !_isNetworkImage) {
       return Image.asset(placeholderAsset, fit: BoxFit.contain);
     }
 

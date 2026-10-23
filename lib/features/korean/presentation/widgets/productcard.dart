@@ -14,13 +14,8 @@ class Productcard extends StatelessWidget {
     this.onAddToCart,
   });
 
-  /// The product this card represents.
   final SkincareProduct product;
-
-  /// Opens the product details.
   final VoidCallback? onTap;
-
-  /// Called by the `+` button; falls back to [onTap] when not provided.
   final VoidCallback? onAddToCart;
 
   @override
@@ -134,8 +129,6 @@ class Productcard extends StatelessWidget {
     );
   }
 
-  /// Adds one unit to the cart. Tapping the card itself (not the button) opens
-  /// the details, so `+` never navigates.
   VoidCallback _addToCart(BuildContext context) {
     return () {
       final added = ShopManager.instance.addToCart(product);
@@ -151,7 +144,6 @@ class Productcard extends StatelessWidget {
   }
 }
 
-/// Heart button that reflects (and toggles) the shared favourites state.
 class _FavoriteButton extends StatelessWidget {
   const _FavoriteButton({required this.product});
 

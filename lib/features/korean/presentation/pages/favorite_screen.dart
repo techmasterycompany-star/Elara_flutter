@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../business_logic/shop_manager.dart';
 import '../../data/models/skincare_product.dart';
-import '../widgets/productcard.dart';
+import '../widgets/product_grid.dart';
 
 /// Body-only screen listing everything the user has favourited.
 ///
@@ -28,27 +28,7 @@ class FavoriteScreen extends StatelessWidget {
           return _EmptyFavorites(textTheme: textTheme);
         }
 
-        return SingleChildScrollView(
-          scrollDirection: Axis.vertical,
-          child: Padding(
-            padding: const EdgeInsets.all(AppSpacing.xs),
-            child: GridView.count(
-              crossAxisSpacing: AppRadius.md,
-              mainAxisSpacing: AppSpacing.md,
-              childAspectRatio: 0.6,
-              physics: const NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              crossAxisCount: 2,
-              children: [
-                for (final product in products)
-                  Productcard(
-                    product: product,
-                    onTap: () => onProductTap(product),
-                  ),
-              ],
-            ),
-          ),
-        );
+        return ProductGrid(products: products, onProductTap: onProductTap);
       },
     );
   }
