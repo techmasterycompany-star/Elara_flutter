@@ -5,10 +5,6 @@ import '../../business_logic/shop_manager.dart';
 import '../../data/models/skincare_product.dart';
 import '../widgets/product_grid.dart';
 
-/// Body-only screen listing everything the user has favourited.
-///
-/// Follows the same contract as `ProductDetailsScreen`: no [Scaffold] of its
-/// own, it is hosted inside the layout that already owns one.
 class FavoriteScreen extends StatelessWidget {
   const FavoriteScreen({super.key, required this.onProductTap});
 
