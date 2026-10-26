@@ -1,25 +1,28 @@
+import 'package:elara_flutter/core/business_logic/shop_manager.dart';
 import 'package:elara_flutter/core/constants/app_colors.dart';
 import 'package:elara_flutter/core/constants/app_spacing.dart';
-import 'package:elara_flutter/core/theme/app_Typography.dart';
+import 'package:elara_flutter/core/models/product.dart';
+import 'package:elara_flutter/core/theme/app_typography.dart';
 import 'package:elara_flutter/core/widgets/pill_button.dart';
+import 'package:elara_flutter/core/widgets/product_image.dart';
+import 'package:elara_flutter/core/widgets/quantity_selector.dart';
+import 'package:elara_flutter/core/widgets/rating_stars.dart';
 import 'package:flutter/material.dart';
 
-import '../../business_logic/shop_manager.dart';
-import '../../data/models/skincare_product.dart';
-import '../widgets/product_image.dart';
-import '../widgets/quantity_selector.dart';
-import '../widgets/rating_stars.dart';
+/// Reusable product detail body.
+///
+/// Used by both the Korean catalogue and the Bundle catalogue so the two
+/// features stay visually identical.
+class ProductDetailsView extends StatefulWidget {
+  const ProductDetailsView({super.key, required this.product});
 
-class ProductDetailsScreen extends StatefulWidget {
-  const ProductDetailsScreen({super.key, required this.product});
-
-  final SkincareProduct product;
+  final Product product;
 
   @override
-  State<ProductDetailsScreen> createState() => _ProductDetailsScreenState();
+  State<ProductDetailsView> createState() => _ProductDetailsViewState();
 }
 
-class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
+class _ProductDetailsViewState extends State<ProductDetailsView> {
   late int _quantity;
 
   @override
@@ -29,15 +32,14 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   }
 
   @override
-  void didUpdateWidget(covariant ProductDetailsScreen oldWidget) {
+  void didUpdateWidget(covariant ProductDetailsView oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.product.id != widget.product.id) {
       _quantity = _initialQuantity(widget.product);
     }
   }
 
-  static int _initialQuantity(SkincareProduct product) =>
-      product.isInStock ? 1 : 0;
+  static int _initialQuantity(Product product) => product.isInStock ? 1 : 0;
 
   @override
   Widget build(BuildContext context) {
@@ -76,7 +78,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
     );
   }
 
-  Widget _buildHeader(TextTheme textTheme, SkincareProduct product) {
+  Widget _buildHeader(TextTheme textTheme, Product product) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       spacing: AppSpacing.xs,
@@ -101,7 +103,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
     );
   }
 
-  Widget _buildImage(BuildContext context, SkincareProduct product) {
+  Widget _buildImage(BuildContext context, Product product) {
     final colorTheme = Theme.of(context).colorScheme;
 
     return Stack(
@@ -126,7 +128,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
     );
   }
 
-  Widget _buildFavoriteButton(BuildContext context, SkincareProduct product) {
+  Widget _buildFavoriteButton(BuildContext context, Product product) {
     final colorTheme = Theme.of(context).colorScheme;
     final shop = ShopManager.instance;
 
@@ -154,7 +156,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
     );
   }
 
-  Widget _buildStockBadge(BuildContext context, SkincareProduct product) {
+  Widget _buildStockBadge(BuildContext context, Product product) {
     late final Color foreground;
     late final Color background;
     late final Color border;
@@ -194,7 +196,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
     );
   }
 
-  Widget _buildProductInfo(TextTheme textTheme, SkincareProduct product) {
+  Widget _buildProductInfo(TextTheme textTheme, Product product) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       spacing: AppSpacing.sm,
@@ -208,7 +210,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
     );
   }
 
-  Widget _buildActionBar(BuildContext context, SkincareProduct product) {
+  Widget _buildActionBar(BuildContext context, Product product) {
     // Sold out products cannot be added to the cart.
     final canAddToCart = product.isInStock;
 

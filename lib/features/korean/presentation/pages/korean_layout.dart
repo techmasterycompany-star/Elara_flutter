@@ -1,13 +1,14 @@
-import 'package:elara_flutter/core/constants/app_colors.dart';
 import 'package:elara_flutter/core/constants/app_spacing.dart';
+import 'package:elara_flutter/core/models/product.dart';
+import 'package:elara_flutter/core/widgets/breadcrumb_path.dart';
+import 'package:elara_flutter/core/widgets/favorite_products_view.dart';
 import 'package:elara_flutter/core/widgets/pill_button.dart';
+import 'package:elara_flutter/core/widgets/product_details_view.dart';
+import 'package:elara_flutter/core/widgets/shop_app_bar.dart';
+import 'package:elara_flutter/core/widgets/shop_drawer.dart';
 import 'package:flutter/material.dart';
 
-import '../../business_logic/shop_manager.dart';
-import '../../data/models/skincare_product.dart';
 import 'mackup_screen.dart';
-import 'favorite_screen.dart';
-import 'product_details_screen.dart';
 import 'skincare_screen.dart';
 
 /// Which body the layout is currently showing.
@@ -28,13 +29,13 @@ class _KoreanLayoutState extends State<KoreanLayout> {
   /// Where the back button returns to when leaving the details screen.
   _KoreanView _returnView = _KoreanView.catalogue;
 
-  SkincareProduct? _selectedProduct;
+  Product? _selectedProduct;
 
   String get _currentTab => index == 0 ? 'Skincare' : 'Mackup';
 
   void _selectTab(int value) => setState(() => index = value);
 
-  void _openProduct(SkincareProduct product) {
+  void _openProduct(Product product) {
     setState(() {
       if (_view != _KoreanView.productDetails) _returnView = _view;
       _selectedProduct = product;
@@ -68,27 +69,21 @@ class _KoreanLayoutState extends State<KoreanLayout> {
 
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
     final isCatalogue = _view == _KoreanView.catalogue;
 
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(onPressed: () {}, icon: Icon(Icons.menu, size: 30)),
-        title: Image.asset('assets/images/logo.png', height: 100),
-        centerTitle: true,
-        actions: [
-          _buildFavoritesAction(context),
-          _buildCartAction(context),
-        ],
-      ),
-
+      appBar: ShopAppBar(onFavorites: _showFavorites),
+      drawer: const ShopDrawer(),
       body: Container(
         padding: EdgeInsets.all(AppSpacing.lg),
         child: Column(
           spacing: AppSpacing.xl,
           crossAxisAlignment: .start,
           children: [
-            _buildPath(textTheme, _breadcrumb, isCatalogue ? null : _goBack),
+            BreadcrumbPath(
+              path: _breadcrumb,
+              onBack: isCatalogue ? null : _goBack,
+            ),
 
             if (isCatalogue)
               Row(
@@ -125,89 +120,9 @@ class _KoreanLayoutState extends State<KoreanLayout> {
           ],
         );
       case _KoreanView.favorites:
-        return FavoriteScreen(onProductTap: _openProduct);
+        return FavoriteProductsView(onProductTap: _openProduct);
       case _KoreanView.productDetails:
-        return ProductDetailsScreen(product: _selectedProduct!);
+        return ProductDetailsView(product: _selectedProduct!);
     }
   }
-
-  Widget _buildFavoritesAction(BuildContext context) {
-    final colorTheme = Theme.of(context).colorScheme;
-
-    return ListenableBuilder(
-      listenable: ShopManager.instance,
-      builder: (context, _) {
-        final hasFavorites = ShopManager.instance.favoriteCount > 0;
-        return IconButton(
-          onPressed: _showFavorites,
-          tooltip: 'Favourites',
-          icon: Icon(
-            hasFavorites ? Icons.favorite : Icons.favorite_border_outlined,
-            size: 30,
-            color: hasFavorites ? AppColors.primary : colorTheme.onSurface,
-          ),
-        );
-      },
-    );
-  }
-
-  Widget _buildCartAction(BuildContext context) {
-    final colorTheme = Theme.of(context).colorScheme;
-
-    return ListenableBuilder(
-      listenable: ShopManager.instance,
-      builder: (context, _) {
-        final count = ShopManager.instance.cartItemCount;
-        return IconButton(
-          onPressed: _showCartSummary,
-          tooltip: 'Cart',
-          icon: Badge(
-            isLabelVisible: count > 0,
-            label: Text('$count'),
-            child: Icon(
-              Icons.shopping_bag_outlined,
-              size: 30,
-              color: colorTheme.onSurface,
-            ),
-          ),
-        );
-      },
-    );
-  }
-
-  void _showCartSummary() {
-    final shop = ShopManager.instance;
-    final message = shop.cartItemCount == 0
-        ? 'Your cart is empty'
-        : '${shop.cartItemCount} item(s) · \$${shop.cartTotal.toStringAsFixed(2)}';
-
-    ScaffoldMessenger.of(context)
-      ..hideCurrentSnackBar()
-      ..showSnackBar(SnackBar(content: Text(message)));
-  }
-}
-
-Widget _buildPath(TextTheme textTheme, String path, VoidCallback? onBack) {
-  if (onBack == null) {
-    return Text(path, style: textTheme.bodyLarge);
-  }
-
-  return Row(
-    children: [
-      IconButton(
-        onPressed: onBack,
-        icon: const Icon(Icons.arrow_back),
-        tooltip: 'Back',
-      ),
-      SizedBox(width: AppSpacing.xxs),
-      Expanded(
-        child: Text(
-          path,
-          style: textTheme.bodyLarge,
-          maxLines: 1,
-          overflow: TextOverflow.ellipsis,
-        ),
-      ),
-    ],
-  );
 }

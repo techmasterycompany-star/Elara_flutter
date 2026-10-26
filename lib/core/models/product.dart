@@ -1,6 +1,9 @@
-/// A skincare product as it will come back from the API.
-class SkincareProduct {
-  const SkincareProduct({
+/// A shopping product as it comes back from the API.
+///
+/// Shared by every catalogue feature (Korean, Bundle, ...) so the same cards,
+/// grids and detail views can be reused.
+class Product {
+  const Product({
     required this.id,
     required this.name,
     required this.category,
@@ -27,8 +30,8 @@ class SkincareProduct {
 
   bool get isLowStock => isInStock && stock <= lowStockThreshold;
 
-  factory SkincareProduct.fromJson(Map<String, dynamic> json) {
-    return SkincareProduct(
+  factory Product.fromJson(Map<String, dynamic> json) {
+    return Product(
       id: json['id'].toString(),
       name: json['name'] as String? ?? '',
       category: json['category'] as String? ?? '',

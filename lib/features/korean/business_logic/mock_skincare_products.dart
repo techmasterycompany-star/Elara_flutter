@@ -1,8 +1,8 @@
-import '../data/models/skincare_product.dart';
+import 'package:elara_flutter/core/models/product.dart';
 
 /// Temporary sample catalogue.
-const List<SkincareProduct> mockSkincareProducts = [
-  SkincareProduct(
+const List<Product> mockSkincareProducts = [
+  Product(
     id: '1',
     name: 'Aqua Boost Essence Toner',
     category: 'Toners',
@@ -17,7 +17,7 @@ const List<SkincareProduct> mockSkincareProducts = [
         'It sinks in fast and preps the skin for the rest of your routine '
         'without any sticky residue. Use after cleansing, morning and night.',
   ),
-  SkincareProduct(
+  Product(
     id: '2',
     name: 'Snail Repair Serum',
     category: 'Moisturizers',
@@ -32,7 +32,7 @@ const List<SkincareProduct> mockSkincareProducts = [
         'redness and strengthen a damaged barrier. Two to three drops are '
         'enough for the whole face.',
   ),
-  SkincareProduct(
+  Product(
     id: '3',
     name: 'Ceramide Barrier Cream',
     category: 'Moisturizers',
@@ -46,7 +46,7 @@ const List<SkincareProduct> mockSkincareProducts = [
         'cholesterol to lock moisture in for up to 48 hours. Ideal for dry '
         'and sensitised skin.',
   ),
-  SkincareProduct(
+  Product(
     id: '4',
     name: 'Rice Bright Cleansing Foam',
     category: 'Cleansers',
@@ -60,7 +60,7 @@ const List<SkincareProduct> mockSkincareProducts = [
         'away sunscreen and daily grime while keeping the skin comfortable '
         'after rinsing.',
   ),
-  SkincareProduct(
+  Product(
     id: '5',
     name: 'Green Tea Clay Mask',
     category: 'Mask',
@@ -75,7 +75,7 @@ const List<SkincareProduct> mockSkincareProducts = [
         'without over-drying. Apply a thin layer twice a week, avoiding the '
         'eye area.',
   ),
-  SkincareProduct(
+  Product(
     id: '6',
     name: 'SPF 50+ Daily Sunscreen',
     category: 'Sunscreen',

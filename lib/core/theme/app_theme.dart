@@ -1,5 +1,5 @@
 import 'package:elara_flutter/core/constants/app_colors.dart';
-import 'package:elara_flutter/core/theme/app_Typography.dart';
+import 'package:elara_flutter/core/theme/app_typography.dart';
 import 'package:elara_flutter/core/constants/app_spacing.dart';
 import 'package:flutter/material.dart';
 
@@ -22,14 +22,30 @@ class AppTheme {
       ),
       dividerColor: AppColors.lightBorderSubtle,
       textTheme: TextTheme(
-        displayLarge: AppTypography.displayMedium.copyWith(color: AppColors.lightTextPrimary),
-        headlineLarge: AppTypography.h1.copyWith(color: AppColors.lightTextPrimary),
-        headlineMedium: AppTypography.h2.copyWith(color: AppColors.lightTextPrimary),
-        headlineSmall: AppTypography.h3.copyWith(color: AppColors.lightTextPrimary),
-        bodyLarge: AppTypography.bodyLarge.copyWith(color: AppColors.lightTextPrimary),
-        bodyMedium: AppTypography.bodyMedium.copyWith(color: AppColors.lightTextPrimary),
-        bodySmall: AppTypography.bodySmall.copyWith(color: AppColors.lightTextSecondary),
-        labelSmall: AppTypography.caption.copyWith(color: AppColors.lightTextSecondary),
+        displayLarge: AppTypography.displayMedium.copyWith(
+          color: AppColors.lightTextPrimary,
+        ),
+        headlineLarge: AppTypography.h1.copyWith(
+          color: AppColors.lightTextPrimary,
+        ),
+        headlineMedium: AppTypography.h2.copyWith(
+          color: AppColors.lightTextPrimary,
+        ),
+        headlineSmall: AppTypography.h3.copyWith(
+          color: AppColors.lightTextPrimary,
+        ),
+        bodyLarge: AppTypography.bodyLarge.copyWith(
+          color: AppColors.lightTextPrimary,
+        ),
+        bodyMedium: AppTypography.bodyMedium.copyWith(
+          color: AppColors.lightTextPrimary,
+        ),
+        bodySmall: AppTypography.bodySmall.copyWith(
+          color: AppColors.lightTextSecondary,
+        ),
+        labelSmall: AppTypography.caption.copyWith(
+          color: AppColors.lightTextSecondary,
+        ),
       ),
       cardTheme: CardThemeData(
         color: AppColors.lightSurfaceElevated,
@@ -60,14 +76,30 @@ class AppTheme {
       ),
       dividerColor: AppColors.darkBorderSubtle,
       textTheme: TextTheme(
-        displayLarge: AppTypography.displayMedium.copyWith(color: AppColors.darkTextPrimary),
-        headlineLarge: AppTypography.h1.copyWith(color: AppColors.darkTextPrimary),
-        headlineMedium: AppTypography.h2.copyWith(color: AppColors.darkTextPrimary),
-        headlineSmall: AppTypography.h3.copyWith(color: AppColors.darkTextPrimary),
-        bodyLarge: AppTypography.bodyLarge.copyWith(color: AppColors.darkTextPrimary),
-        bodyMedium: AppTypography.bodyMedium.copyWith(color: AppColors.darkTextPrimary),
-        bodySmall: AppTypography.bodySmall.copyWith(color: AppColors.darkTextSecondary),
-        labelSmall: AppTypography.caption.copyWith(color: AppColors.darkTextSecondary),
+        displayLarge: AppTypography.displayMedium.copyWith(
+          color: AppColors.darkTextPrimary,
+        ),
+        headlineLarge: AppTypography.h1.copyWith(
+          color: AppColors.darkTextPrimary,
+        ),
+        headlineMedium: AppTypography.h2.copyWith(
+          color: AppColors.darkTextPrimary,
+        ),
+        headlineSmall: AppTypography.h3.copyWith(
+          color: AppColors.darkTextPrimary,
+        ),
+        bodyLarge: AppTypography.bodyLarge.copyWith(
+          color: AppColors.darkTextPrimary,
+        ),
+        bodyMedium: AppTypography.bodyMedium.copyWith(
+          color: AppColors.darkTextPrimary,
+        ),
+        bodySmall: AppTypography.bodySmall.copyWith(
+          color: AppColors.darkTextSecondary,
+        ),
+        labelSmall: AppTypography.caption.copyWith(
+          color: AppColors.darkTextSecondary,
+        ),
       ),
       cardTheme: CardThemeData(
         color: AppColors.darkSurfaceElevated,

@@ -1,8 +1,8 @@
-import '../data/models/skincare_product.dart';
+import 'package:elara_flutter/core/models/product.dart';
 
 /// Temporary sample makeup catalogue.
-const List<SkincareProduct> mockMackupProducts = [
-  SkincareProduct(
+const List<Product> mockMackupProducts = [
+  Product(
     id: 'm1',
     name: 'Glass Skin Cushion Foundation',
     category: 'Face',
@@ -17,7 +17,7 @@ const List<SkincareProduct> mockMackupProducts = [
         'glass-like finish. The refillable case keeps the formula fresh and '
         'the included puff blends seamlessly without caking.',
   ),
-  SkincareProduct(
+  Product(
     id: 'm2',
     name: 'Velvet Lip Tint',
     category: 'Lips',
@@ -31,7 +31,7 @@ const List<SkincareProduct> mockMackupProducts = [
         'The watery texture glides on smoothly, layers without flaking and '
         'stays comfortable for hours.',
   ),
-  SkincareProduct(
+  Product(
     id: 'm3',
     name: 'Micro Brow Pencil',
     category: 'Eyes',
@@ -45,7 +45,7 @@ const List<SkincareProduct> mockMackupProducts = [
         'sparse areas. The spoolie end blends the pigment for a natural, '
         'undone look.',
   ),
-  SkincareProduct(
+  Product(
     id: 'm4',
     name: 'Long Lash Mascara',
     category: 'Eyes',
@@ -59,7 +59,7 @@ const List<SkincareProduct> mockMackupProducts = [
         'every lash. The flexible formula adds length without clumps and '
         'removes easily with warm water.',
   ),
-  SkincareProduct(
+  Product(
     id: 'm5',
     name: 'Peach Blur Blush',
     category: 'Face',
@@ -74,7 +74,7 @@ const List<SkincareProduct> mockMackupProducts = [
         'peach flush. The finely milled pigment builds gradually and blurs '
         'pores for a smooth finish.',
   ),
-  SkincareProduct(
+  Product(
     id: 'm6',
     name: 'Dewy Lip Balm',
     category: 'Lips',

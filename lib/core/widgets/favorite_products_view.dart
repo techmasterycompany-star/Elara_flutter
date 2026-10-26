@@ -1,14 +1,14 @@
+import 'package:elara_flutter/core/business_logic/shop_manager.dart';
 import 'package:elara_flutter/core/constants/app_spacing.dart';
+import 'package:elara_flutter/core/models/product.dart';
+import 'package:elara_flutter/core/widgets/product_grid.dart';
 import 'package:flutter/material.dart';
 
-import '../../business_logic/shop_manager.dart';
-import '../../data/models/skincare_product.dart';
-import '../widgets/product_grid.dart';
+/// Favourites grid shared by catalogue features.
+class FavoriteProductsView extends StatelessWidget {
+  const FavoriteProductsView({super.key, required this.onProductTap});
 
-class FavoriteScreen extends StatelessWidget {
-  const FavoriteScreen({super.key, required this.onProductTap});
-
-  final ValueChanged<SkincareProduct> onProductTap;
+  final ValueChanged<Product> onProductTap;
 
   @override
   Widget build(BuildContext context) {

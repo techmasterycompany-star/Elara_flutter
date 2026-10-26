@@ -1,10 +1,9 @@
 import 'package:elara_flutter/core/constants/app_spacing.dart';
+import 'package:elara_flutter/core/models/product.dart';
+import 'package:elara_flutter/core/widgets/product_card.dart';
 import 'package:flutter/material.dart';
 
-import '../../data/models/skincare_product.dart';
-import 'productcard.dart';
-
-
+/// Two-column product grid shared by all catalogue screens.
 class ProductGrid extends StatelessWidget {
   const ProductGrid({
     super.key,
@@ -12,8 +11,8 @@ class ProductGrid extends StatelessWidget {
     required this.onProductTap,
   });
 
-  final List<SkincareProduct> products;
-  final ValueChanged<SkincareProduct> onProductTap;
+  final List<Product> products;
+  final ValueChanged<Product> onProductTap;
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +29,7 @@ class ProductGrid extends StatelessWidget {
           crossAxisCount: 2,
           children: [
             for (final product in products)
-              Productcard(product: product, onTap: () => onProductTap(product)),
+              ProductCard(product: product, onTap: () => onProductTap(product)),
           ],
         ),
       ),

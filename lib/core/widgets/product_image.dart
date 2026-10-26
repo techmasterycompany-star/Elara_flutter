@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 
 class ProductImage extends StatelessWidget {
-  const ProductImage({super.key, required this.imageUrl, this.fit = BoxFit.cover});
+  const ProductImage({
+    super.key,
+    required this.imageUrl,
+    this.fit = BoxFit.cover,
+  });
 
   final String imageUrl;
   final BoxFit fit;

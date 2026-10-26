@@ -1,20 +1,20 @@
+import 'package:elara_flutter/core/business_logic/shop_manager.dart';
 import 'package:elara_flutter/core/constants/app_colors.dart';
 import 'package:elara_flutter/core/constants/app_spacing.dart';
+import 'package:elara_flutter/core/models/product.dart';
+import 'package:elara_flutter/core/widgets/product_image.dart';
 import 'package:flutter/material.dart';
 
-import '../../business_logic/shop_manager.dart';
-import '../../data/models/skincare_product.dart';
-import 'product_image.dart';
-
-class Productcard extends StatelessWidget {
-  const Productcard({
+/// Reusable product tile used by every catalogue feature.
+class ProductCard extends StatelessWidget {
+  const ProductCard({
     super.key,
     required this.product,
     this.onTap,
     this.onAddToCart,
   });
 
-  final SkincareProduct product;
+  final Product product;
   final VoidCallback? onTap;
   final VoidCallback? onAddToCart;
 
@@ -40,7 +40,10 @@ class Productcard extends StatelessWidget {
                 child: Stack(
                   fit: StackFit.expand,
                   children: [
-                    ProductImage(imageUrl: product.imageUrl, fit: BoxFit.contain),
+                    ProductImage(
+                      imageUrl: product.imageUrl,
+                      fit: BoxFit.contain,
+                    ),
 
                     Positioned(
                       top: AppSpacing.xs,
@@ -54,8 +57,9 @@ class Productcard extends StatelessWidget {
                         left: AppSpacing.xs,
                         child: Text(
                           'New',
-                          style: textTheme.bodyLarge
-                              ?.copyWith(color: colorTheme.error),
+                          style: textTheme.bodyLarge?.copyWith(
+                            color: colorTheme.error,
+                          ),
                         ),
                       ),
 
@@ -147,7 +151,7 @@ class Productcard extends StatelessWidget {
 class _FavoriteButton extends StatelessWidget {
   const _FavoriteButton({required this.product});
 
-  final SkincareProduct product;
+  final Product product;
 
   @override
   Widget build(BuildContext context) {

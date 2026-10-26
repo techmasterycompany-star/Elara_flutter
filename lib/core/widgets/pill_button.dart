@@ -4,7 +4,12 @@ class PillButton extends StatelessWidget {
   final String message;
   final VoidCallback? onPressed;
   final bool isSelected;
-  const PillButton({super.key, required this.message, this.onPressed, this.isSelected = false});
+  const PillButton({
+    super.key,
+    required this.message,
+    this.onPressed,
+    this.isSelected = false,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -16,9 +21,7 @@ class PillButton extends StatelessWidget {
       style: OutlinedButton.styleFrom(
         backgroundColor: isSelected ? colorTheme.onSurface : colorTheme.surface,
         side: BorderSide(color: colorTheme.onSurface),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(50),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
       ),
       child: Text(
         message,

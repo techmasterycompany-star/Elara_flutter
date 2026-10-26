@@ -2,7 +2,7 @@ import 'package:elara_flutter/core/constants/app_spacing.dart';
 import 'package:elara_flutter/core/widgets/pill_button.dart';
 import 'package:flutter/material.dart';
 
-/// Horizontal scrollable filter bar for product categories.
+/// Horizontal scrollable filter bar for categories/segments.
 class CategoryFilterBar extends StatelessWidget {
   const CategoryFilterBar({
     super.key,

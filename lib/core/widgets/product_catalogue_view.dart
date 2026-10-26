@@ -1,8 +1,8 @@
+import 'package:elara_flutter/core/models/product.dart';
+import 'package:elara_flutter/core/widgets/product_grid.dart';
 import 'package:flutter/material.dart';
 
-import '../../data/models/skincare_product.dart';
-import 'product_grid.dart';
-
+/// Loading/empty wrapper around [ProductGrid] for simple catalogues.
 class ProductCatalogueView extends StatefulWidget {
   const ProductCatalogueView({
     super.key,
@@ -10,20 +10,19 @@ class ProductCatalogueView extends StatefulWidget {
     required this.onProductTap,
   });
 
-  final Future<List<SkincareProduct>> Function() loadProducts;
-  final ValueChanged<SkincareProduct> onProductTap;
+  final Future<List<Product>> Function() loadProducts;
+  final ValueChanged<Product> onProductTap;
 
   @override
   State<ProductCatalogueView> createState() => _ProductCatalogueViewState();
 }
 
 class _ProductCatalogueViewState extends State<ProductCatalogueView> {
-  late final Future<List<SkincareProduct>> _productsFuture = widget
-      .loadProducts();
+  late final Future<List<Product>> _productsFuture = widget.loadProducts();
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<List<SkincareProduct>>(
+    return FutureBuilder<List<Product>>(
       future: _productsFuture,
       builder: (context, snapshot) {
         if (snapshot.connectionState != ConnectionState.done) {
@@ -36,7 +35,7 @@ class _ProductCatalogueViewState extends State<ProductCatalogueView> {
           );
         }
 
-        final products = snapshot.data ?? const <SkincareProduct>[];
+        final products = snapshot.data ?? const <Product>[];
         if (products.isEmpty) {
           return const Center(child: Text('No products found.'));
         }

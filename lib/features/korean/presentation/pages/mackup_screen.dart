@@ -1,10 +1,10 @@
 import 'package:elara_flutter/core/constants/app_spacing.dart';
+import 'package:elara_flutter/core/models/product.dart';
+import 'package:elara_flutter/core/widgets/category_filter_bar.dart';
+import 'package:elara_flutter/core/widgets/product_grid.dart';
 import 'package:flutter/material.dart';
 
 import '../../data/mackup_product_repository.dart';
-import '../../data/models/skincare_product.dart';
-import '../widgets/category_filter_bar.dart';
-import '../widgets/product_grid.dart';
 
 enum MackupCategory {
   all('All Product'),
@@ -20,7 +20,7 @@ enum MackupCategory {
 class MackupScreen extends StatefulWidget {
   const MackupScreen({super.key, required this.onProductTap});
 
-  final ValueChanged<SkincareProduct> onProductTap;
+  final ValueChanged<Product> onProductTap;
 
   @override
   State<MackupScreen> createState() => _MackupScreenState();
@@ -29,15 +29,15 @@ class MackupScreen extends StatefulWidget {
 class _MackupScreenState extends State<MackupScreen> {
   static const _repository = MackupProductRepository();
 
-  late final Future<List<SkincareProduct>> _productsFuture =
-      _repository.fetchMackupProducts();
+  late final Future<List<Product>> _productsFuture = _repository
+      .fetchMackupProducts();
 
   MackupCategory _selectedCategory = MackupCategory.all;
 
   List<String> get _categories =>
       MackupCategory.values.map((e) => e.label).toList();
 
-  List<SkincareProduct> _filterProducts(List<SkincareProduct> products) {
+  List<Product> _filterProducts(List<Product> products) {
     if (_selectedCategory == MackupCategory.all) {
       return products;
     }
@@ -54,7 +54,7 @@ class _MackupScreenState extends State<MackupScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<List<SkincareProduct>>(
+    return FutureBuilder<List<Product>>(
       future: _productsFuture,
       builder: (context, snapshot) {
         if (snapshot.connectionState != ConnectionState.done) {
@@ -67,7 +67,7 @@ class _MackupScreenState extends State<MackupScreen> {
           );
         }
 
-        final allProducts = snapshot.data ?? const <SkincareProduct>[];
+        final allProducts = snapshot.data ?? const <Product>[];
         final products = _filterProducts(allProducts);
 
         return Column(

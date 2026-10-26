@@ -1,10 +1,10 @@
 import 'package:elara_flutter/core/constants/app_spacing.dart';
+import 'package:elara_flutter/core/models/product.dart';
+import 'package:elara_flutter/core/widgets/category_filter_bar.dart';
+import 'package:elara_flutter/core/widgets/product_grid.dart';
 import 'package:flutter/material.dart';
 
-import '../../data/models/skincare_product.dart';
 import '../../data/skincare_product_repository.dart';
-import '../widgets/category_filter_bar.dart';
-import '../widgets/product_grid.dart';
 
 enum SkincareCategory {
   all('All Product'),
@@ -21,7 +21,7 @@ enum SkincareCategory {
 class SkincareScreen extends StatefulWidget {
   const SkincareScreen({super.key, required this.onProductTap});
 
-  final ValueChanged<SkincareProduct> onProductTap;
+  final ValueChanged<Product> onProductTap;
 
   @override
   State<SkincareScreen> createState() => _SkincareScreenState();
@@ -30,15 +30,15 @@ class SkincareScreen extends StatefulWidget {
 class _SkincareScreenState extends State<SkincareScreen> {
   static const _repository = SkincareProductRepository();
 
-  late final Future<List<SkincareProduct>> _productsFuture =
-      _repository.fetchSkincareProducts();
+  late final Future<List<Product>> _productsFuture = _repository
+      .fetchSkincareProducts();
 
   SkincareCategory _selectedCategory = SkincareCategory.all;
 
   List<String> get _categories =>
       SkincareCategory.values.map((e) => e.label).toList();
 
-  List<SkincareProduct> _filterProducts(List<SkincareProduct> products) {
+  List<Product> _filterProducts(List<Product> products) {
     if (_selectedCategory == SkincareCategory.all) {
       return products;
     }
@@ -50,7 +50,9 @@ class _SkincareScreenState extends State<SkincareScreen> {
         return category == 'cleansers' || category == 'cleanser';
       }
       if (_selectedCategory == SkincareCategory.toners) {
-        return category == 'toners' || category == 'toner' || category == 'essence';
+        return category == 'toners' ||
+            category == 'toner' ||
+            category == 'essence';
       }
       if (_selectedCategory == SkincareCategory.moisturizers) {
         return category == 'moisturizers' ||
@@ -70,7 +72,7 @@ class _SkincareScreenState extends State<SkincareScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<List<SkincareProduct>>(
+    return FutureBuilder<List<Product>>(
       future: _productsFuture,
       builder: (context, snapshot) {
         if (snapshot.connectionState != ConnectionState.done) {
@@ -83,7 +85,7 @@ class _SkincareScreenState extends State<SkincareScreen> {
           );
         }
 
-        final allProducts = snapshot.data ?? const <SkincareProduct>[];
+        final allProducts = snapshot.data ?? const <Product>[];
         final products = _filterProducts(allProducts);
 
         return Column(
