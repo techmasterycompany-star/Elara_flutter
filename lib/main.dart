@@ -1,9 +1,11 @@
+import 'package:elara_flutter/core/network/service_locator.dart';
 import 'package:elara_flutter/core/routes/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-
 void main() {
+  setupServiceLocator();
+
   runApp(const MyApp());
 }
 
@@ -21,6 +23,7 @@ class MyApp extends StatelessWidget {
         return MaterialApp.router(
           debugShowCheckedModeBanner: false,
           routerConfig: appRouter,
+          themeMode: ThemeMode.light,
         );
       },
     );
